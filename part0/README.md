@@ -38,7 +38,6 @@ sequenceDiagram
     deactivate server
 
     Note right of browser: The browser executes the callback function that renders the notes with the updated data.
-
 ```
 
 
@@ -71,10 +70,10 @@ sequenceDiagram
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
     server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
-    deactivate
+    deactivate server
 
+    Note right of browser: The browser executes the callback function that renders the notes
 ```
-
 
 
 
@@ -104,6 +103,5 @@ sequenceDiagram
     deactivate server
 
     Note over browser: The browser executes the callback function to render the updated notes.
-
 ```
 
