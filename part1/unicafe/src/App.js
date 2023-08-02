@@ -3,7 +3,7 @@ import { useState } from 'react';
 const Button = ({ handleclick, text }) => (
   <button onClick={handleclick}>{text}</button>
 );
-const Display = ({ good, neutral, bad }) => {
+const Statistics = ({ good, neutral, bad }) => {
   const total = good + neutral + bad;
   const average = (good - bad) / total;
   const percentagePositive = (good / total) * 100;
@@ -37,7 +37,7 @@ const App = () => {
       <Button handleclick={handleclick(neutral, setNeutral)} text="neutral" />
       <Button handleclick={handleclick(bad, setBad)} text="bad" />
 
-      <Display good={good} neutral={neutral} bad={bad} />
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   );
 };
