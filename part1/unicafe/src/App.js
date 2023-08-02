@@ -3,6 +3,16 @@ import { useState } from 'react';
 const Button = ({ handleclick, text }) => (
   <button onClick={handleclick}>{text}</button>
 );
+
+const StatisticLine = ({ text, value }) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  );
+};
+
 const Statistics = ({ good, neutral, bad }) => {
   const total = good + neutral + bad;
   const average = (good - bad) / total;
@@ -10,12 +20,20 @@ const Statistics = ({ good, neutral, bad }) => {
   return (
     <div>
       <h2>statistics</h2>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {total}</p>
-      <p>average {average}</p>
-      <p>positive {percentagePositive}%</p>
+      {total === 0 ? (
+        <p>No feedback given</p>
+      ) : (
+        <table>
+          <tbody>
+            <StatisticLine text="good" value={good} />
+            <StatisticLine text="neutral" value={neutral} />
+            <StatisticLine text="bad" value={bad} />
+            <StatisticLine text="total" value={total} />
+            <StatisticLine text="average" value={average.toFixed(2)} />
+            <StatisticLine text="positive" value={percentagePositive.toFixed(2) + '%'} />
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
