@@ -1,16 +1,20 @@
-import { useState } from 'react'
-import { isEqual } from './utils/utils.js'
+import { useState } from 'react';
+import { isEqual } from './utils/utils.js';
+import PhoneForm from './components/PhoneForm.jsx';
+import Filter from './components/Filter.jsx';
+import Persons from './components/Persons.jsx';
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-  ])
+  const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
+  const [filterTerm, setFilterTerm] = useState('');
 
+  const personsToShow = filterTerm
+    ? persons.filter((person) =>
+        person.name.toLowerCase().includes(filterTerm.toLowerCase()),
+      )
+    : persons;
 
   const addPerson = (e) => {
     e.preventDefault();
@@ -20,7 +24,7 @@ const App = () => {
       number: newNumber,
     };
 
-    if (persons.some(person => isEqual(person, personObject))) {
+    if (persons.some((person) => isEqual(person, personObject))) {
       alert(`${newName} is already added to phonebook`);
     } else {
       setPersons(persons.concat(personObject));
@@ -32,15 +36,19 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={addPerson}>
-        <div>name: <input value={newName} onChange={(e) => setNewName(e.target.value)} required/></div>
-        <div>number: <input value={newNumber} onChange={(e) => setNewNumber(e.target.value)} required/></div>
-        <div><button type="submit">add</button></div>
-      </form>
+      <Filter filter={filterTerm} setFilter={setFilterTerm} />
+      <h2>Add a new</h2>
+      <PhoneForm
+        addPerson={addPerson}
+        newName={newName}
+        setNewName={setNewName}
+        newNumber={newNumber}
+        setNewNumber={setNewNumber}
+      />
       <h2>Numbers</h2>
-      {persons.map(person => <div key={person.id}>{`${person.name} ${person.number}`}</div>)}
+      <Persons persons={personsToShow} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
