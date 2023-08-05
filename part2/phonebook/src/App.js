@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { isEqual } from './utils/utils.js';
 import PhoneForm from './components/PhoneForm.jsx';
 import Filter from './components/Filter.jsx';
@@ -9,6 +10,12 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [filterTerm, setFilterTerm] = useState('');
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/persons').then((response) => {
+      setPersons(response.data);
+    });
+  }, []);
 
   const personsToShow = filterTerm
     ? persons.filter((person) =>
