@@ -14,17 +14,19 @@ The Full Stack Open course is a deep dive into modern web development. It covers
 
 Each part of the course has its own directory, named according to the part number (e.g., `part0`, `part1`, etc.). Inside each directory, you'll find sub-directories for each set of exercises or individual projects related to that part.
 
-/full-stack-open-exercises
-|-- /part0
-|-- /part1
-| |-- /anecdotes
-| |-- /courseinfo
-| |-- /unicafe
-|-- /part2
-| |-- /countries
-| |-- /courseinfo
-| |-- /phonebook
+```
+/fullstackopen_submission
+|--/part0
+|--/part1
+|----/anecdotes
+|------/courseinfo
+|------/unicafe
+|--/part2
+|----/countries
+|----/courseinfo
+|----/phonebook
 | ...
+```
 
 
 ## Getting Started
