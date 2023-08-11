@@ -16,6 +16,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:ui": "rm -rf ../part3/phonebook/build && npm run build && cp ./build ../part3/phonebook",
+    "deploy:ui": "npm run build:ui && cd ../ && npm add . && npm commit -m 'update the frontend ui' ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
